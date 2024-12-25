@@ -80,8 +80,8 @@ const IntroductionScreenStyles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   gradientButtonBackground: {
-    height: 50,
     borderRadius: 25,
+    // height: 50,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",

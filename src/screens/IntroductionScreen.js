@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Animated, ScrollView, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'react-native-linear-gradient';
-import IntroductionScreenStyles from '../styles/IntroductionScreenStyles';  
-import { Dimensions } from 'react-native';
-
+import { View, Text, Animated, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import IntroductionScreenStyles from '../styles/IntroductionScreenStyles';
 
 const IntroductionScreen = ({ navigation }) => {
   const items = [
@@ -13,114 +10,88 @@ const IntroductionScreen = ({ navigation }) => {
     "Directly log your training, access your PRs, and get back to lifting with all your data in one place.",
   ];
 
-  // Track the current index of the swipe
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Background color animation
-  const [bgColorAnim] = useState(new Animated.Value(0));
-
-  // Content opacity animation
-  const [fadeAnims] = useState(items.map(() => new Animated.Value(0)));
+  // Animation for fading in the content
+  const fadeInOpacity = useState(new Animated.Value(0))[0];
 
   const { width } = Dimensions.get('window');
 
   useEffect(() => {
-    // Fade in the background color
-    Animated.timing(bgColorAnim, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
+    // Start the fade-in animation
+    Animated.timing(fadeInOpacity, {
+      toValue: 1, // Fully visible
+      duration: 1000, // 1-second fade-in
+      useNativeDriver: true, // Use native driver for better performance
     }).start();
-
-    // Fade in content items sequentially
-    const fadeInItems = items.map((_, index) =>
-      Animated.timing(fadeAnims[index], {
-        toValue: 1,
-        duration: 800 + (index * 100),
-        useNativeDriver: true,
-      })
-    );
-
-    // Start the animations sequentially
-    fadeInItems.forEach(animated => animated.start());
-
-  }, [fadeAnims, bgColorAnim]);
+  }, [fadeInOpacity]);
 
   const handleScroll = (event) => {
     const contentOffsetX = event.nativeEvent.contentOffset.x;
-    const index = Math.floor(contentOffsetX / width); 
-    console.log('Current index:', index); 
+    const index = Math.floor(contentOffsetX / width);
     setCurrentIndex(index);
   };
 
   return (
-    <Animated.View style={[IntroductionScreenStyles.container, { backgroundColor: '#222C30' }]}>
-      <Animated.Image 
-        source={require('../assets/IconOnly_Transparent.png')}
-        style={[
-          IntroductionScreenStyles.logo,
-        ]}
-      />
+    <View style={{ flex: 1, backgroundColor: '#222C30' }}> {/* Fixed background color */}
+      <Animated.View style={[IntroductionScreenStyles.container, { opacity: fadeInOpacity }]}>
+        <Animated.Image
+          source={require('../assets/IconOnly_Transparent.png')}
+          style={IntroductionScreenStyles.logo}
+        />
 
-      {/* Swipeable Box with App Sentences */}
-      <Animated.View 
-        style={[IntroductionScreenStyles.swipeableBoxContainer]}>
-        <ScrollView
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          snapToAlignment="center"
-          contentContainerStyle={IntroductionScreenStyles.swipeableBox}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}
-        >
-          {items.map((sentence, index) => (
-            <Animated.View key={index} style={IntroductionScreenStyles.swipeableBoxItem}>
-              <Text style={IntroductionScreenStyles.swipeText}>{sentence}</Text>
-            </Animated.View>
-          ))}
-        </ScrollView>
-      </Animated.View>
-
-      {/* Dots at the bottom */}
-      <View style={IntroductionScreenStyles.dotsContainer}>
-        {items.map((_, index) => (
-          <View
-            key={index}
-            style={[
-              IntroductionScreenStyles.dot,
-              index === currentIndex && IntroductionScreenStyles.activeDot
-                ? IntroductionScreenStyles.activeDot
-                : null
-            ]}
-          />
-        ))}
-      </View>
-
-      {/* Buttons */}
-      <Animated.View style={IntroductionScreenStyles.buttonsContainer}>
-        <TouchableOpacity style={[IntroductionScreenStyles.button]}>
-          <LinearGradient
-            colors={['#216383', '#9EC9DE']} // Gradient from top to bottom
-            style={IntroductionScreenStyles.gradientButtonBackground}
+        {/* Swipeable Box with App Sentences */}
+        <Animated.View style={IntroductionScreenStyles.swipeableBoxContainer}>
+          <ScrollView
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            snapToAlignment="center"
+            contentContainerStyle={IntroductionScreenStyles.swipeableBox}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}
           >
+            {items.map((sentence, index) => (
+              <Animated.View key={index} style={IntroductionScreenStyles.swipeableBoxItem}>
+                <Text style={IntroductionScreenStyles.swipeText}>{sentence}</Text>
+              </Animated.View>
+            ))}
+          </ScrollView>
+        </Animated.View>
+
+        {/* Dots at the bottom */}
+        <View style={IntroductionScreenStyles.dotsContainer}>
+          {items.map((_, index) => (
+            <View
+              key={index}
+              style={[
+                IntroductionScreenStyles.dot,
+                index === currentIndex ? IntroductionScreenStyles.activeDot : null,
+              ]}
+            />
+          ))}
+        </View>
+
+        {/* Buttons */}
+        <Animated.View style={IntroductionScreenStyles.buttonsContainer}>
+          <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
             <Text style={IntroductionScreenStyles.buttonText}>Get Started</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
-          <Text style={IntroductionScreenStyles.buttonText}>Continue with Google</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
+            <Text style={IntroductionScreenStyles.buttonText}>Continue with Google</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
-          <Text style={IntroductionScreenStyles.buttonText}>Continue with Apple</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
+            <Text style={IntroductionScreenStyles.buttonText}>Continue with Apple</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
-          <Text style={IntroductionScreenStyles.buttonText}>Log In</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
+            <Text style={IntroductionScreenStyles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </Animated.View>
       </Animated.View>
-    </Animated.View>
+    </View>
   );
 };
 
