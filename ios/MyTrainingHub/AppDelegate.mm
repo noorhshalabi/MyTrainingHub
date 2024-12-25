@@ -1,15 +1,14 @@
 #import "AppDelegate.h"
-
 #import <React/RCTBundleURLProvider.h>
+#import "RNSplashScreen.h"  
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   self.moduleName = @"MyTrainingHub";
-  // You can add your custom initial props in the dictionary below.
-  // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
+//  [RNSplashScreen show];  // Show splash screen when the app launches
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
