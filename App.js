@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Introduction" component={IntroductionScreen} />
       </Stack.Navigator>
     </NavigationContainer>

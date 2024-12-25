@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Animated, ScrollView, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'react-native-linear-gradient'; // Import LinearGradient
-import IntroductionScreenStyles from '../styles/IntroductionScreenStyles';  // Import styles
+import { LinearGradient } from 'react-native-linear-gradient';
+import IntroductionScreenStyles from '../styles/IntroductionScreenStyles';  
+import { Dimensions } from 'react-native';
+
 
 const IntroductionScreen = ({ navigation }) => {
   const items = [
     "Centralize your training programs in one app – easily organize, track, and customize your workouts and progress.",
     "Create your own workout templates and organize them into custom folders that fit your training style.",
     "Track your personal records for each movement and view your training history, all linked to the exercises you do daily.",
-    "Skip using notes – directly log your training, access your PRs, and get back to lifting with all your data in one place",
+    "Directly log your training, access your PRs, and get back to lifting with all your data in one place.",
   ];
 
   // Track the current index of the swipe
@@ -19,6 +21,8 @@ const IntroductionScreen = ({ navigation }) => {
 
   // Content opacity animation
   const [fadeAnims] = useState(items.map(() => new Animated.Value(0)));
+
+  const { width } = Dimensions.get('window');
 
   useEffect(() => {
     // Fade in the background color
@@ -44,13 +48,13 @@ const IntroductionScreen = ({ navigation }) => {
 
   const handleScroll = (event) => {
     const contentOffsetX = event.nativeEvent.contentOffset.x;
-    const index = Math.floor(contentOffsetX / IntroductionScreenStyles.width); // Calculate the index
+    const index = Math.floor(contentOffsetX / width); 
+    console.log('Current index:', index); 
     setCurrentIndex(index);
   };
 
   return (
     <Animated.View style={[IntroductionScreenStyles.container, { backgroundColor: '#222C30' }]}>
-      {/* Logo at the top */}
       <Animated.Image 
         source={require('../assets/IconOnly_Transparent.png')}
         style={[
@@ -85,7 +89,9 @@ const IntroductionScreen = ({ navigation }) => {
             key={index}
             style={[
               IntroductionScreenStyles.dot,
-              index === currentIndex ? IntroductionScreenStyles.activeDot : {}
+              index === currentIndex && IntroductionScreenStyles.activeDot
+                ? IntroductionScreenStyles.activeDot
+                : null
             ]}
           />
         ))}
