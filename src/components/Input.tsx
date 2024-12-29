@@ -94,7 +94,7 @@ const Input: React.FC<InputProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: '80%',
+    width: '100%',
     borderRadius: 8,
     padding: 10,
     marginBottom: 20,
@@ -102,14 +102,14 @@ const styles = StyleSheet.create({
   label: {
     position: 'absolute',
     top: 20,
-    left: 20,
+    left: 15,
     zIndex: 1,
     paddingHorizontal: 0,
   },
   input: {
     height: 50,
     fontSize: 16,
-    color: '#222C30',
+    color: '#6AA5B6',
     paddingHorizontal: 8,
   },
 });

@@ -31,8 +31,10 @@ const SignupScreen = ({navigation}) => {
             <Input label="Enter email" duration={300} labelColor={'#6AA5B6'} />
             <Input label="Enter password" duration={300} labelColor={'#6AA5B6'}/>
           </View>
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
 
-          <Animated.View style={styles.buttonContainer}>
+      <Animated.View style={styles.buttonContainer}>
             <TouchableOpacity
               onPress={() => navigation.navigate('UpdateProfile')}
               style={[
@@ -42,8 +44,7 @@ const SignupScreen = ({navigation}) => {
               <Text style={IntroductionScreenStyles.buttonText}>Next</Text>
             </TouchableOpacity>
           </Animated.View>
-        </SafeAreaView>
-      </TouchableWithoutFeedback>
+          
     </KeyboardAvoidingView>
   );
 };
@@ -56,11 +57,14 @@ const styles = StyleSheet.create({
   inputContainer: {
     flex: 1, // Occupy most of the screen
     justifyContent: 'center', // Center inputs vertically
-    paddingHorizontal: 20, // Add padding on the sides
+    paddingHorizontal:5, // Add padding on the sides
+    width: '100%',
   },
   buttonContainer: {
     marginBottom: 20, // Space below the button
     alignItems: 'center', // Center the button horizontally
+    paddingHorizontal: 60,
+    marginBottom: 500,
   },
   text: {
     color: '#fff',
