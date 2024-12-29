@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Animated, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import IntroductionScreenStyles from '../styles/IntroductionScreenStyles';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
 const IntroductionScreen = ({ navigation }) => {
   const items = [
@@ -9,12 +11,8 @@ const IntroductionScreen = ({ navigation }) => {
     "Track your personal records for each movement and view your training history, all linked to the exercises you do daily.",
     "Directly log your training, access your PRs, and get back to lifting with all your data in one place.",
   ];
-
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Animation for fading in the content
-  const fadeInOpacity = useState(new Animated.Value(0))[0];
-
+  const fadeInOpacity = useState(new Animated.Value(0))[0]; //animation for fade in
   const { width } = Dimensions.get('window');
 
   useEffect(() => {
@@ -74,7 +72,7 @@ const IntroductionScreen = ({ navigation }) => {
 
         {/* Buttons */}
         <Animated.View style={IntroductionScreenStyles.buttonsContainer}>
-          <TouchableOpacity style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
+          <TouchableOpacity onPress={() => navigation.navigate('Signup')} style={[IntroductionScreenStyles.button, IntroductionScreenStyles.borderButton]}>
             <Text style={IntroductionScreenStyles.buttonText}>Get Started</Text>
           </TouchableOpacity>
 

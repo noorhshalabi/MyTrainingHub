@@ -3,6 +3,7 @@ import { Animated, Text, StyleSheet, Image, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import IntroductionScreen from './src/screens/IntroductionScreen';
+import SignupScreen from './src/screens/SignupScreen';
 
 const Stack = createStackNavigator();
 
@@ -40,7 +41,21 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Introduction" component={IntroductionScreen} />
+        <Stack.Screen name="Introduction" component={IntroductionScreen} options={{ headerShown: false }} />
+        <Stack.Screen 
+          name="Signup" 
+          component={SignupScreen} 
+          options={{
+            headerShown: true, 
+            title: 'Create Account', // Header title
+            headerBackTitle: '', // Explicitly hide the back title
+            headerStyle: {
+              backgroundColor: '#222C30', // Header background color
+            },
+            headerTintColor: '#fff', // Back button and title color
+            headerTitleAlign: 'center', // Center the title
+          }} 
+/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -51,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#222C30', // Keep the background color constant
+    backgroundColor: '#222C30', 
   },
   logo: {
     width: 200,

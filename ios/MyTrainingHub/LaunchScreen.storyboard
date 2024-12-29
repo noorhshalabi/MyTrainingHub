@@ -17,6 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="FullLogo_Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="flJ-09-rHg">
+                                <rect key="frame" x="0.0" y="7" width="0.0" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondAttribute="height" multiplier="0.3" id="proportionalHeight"/>
                                     <constraint firstAttribute="width" secondAttribute="width" multiplier="0.5" id="proportionalWidth"/>
