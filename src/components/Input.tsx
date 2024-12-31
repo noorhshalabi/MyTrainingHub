@@ -97,20 +97,20 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 30,
   },
   label: {
     position: 'absolute',
-    top: 20,
+    top: 15,
     left: 15,
-    zIndex: 1,
+    zIndex: 3,
     paddingHorizontal: 0,
   },
   input: {
-    height: 50,
+    height: 30,
     fontSize: 16,
     color: '#6AA5B6',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
   },
 });
 
