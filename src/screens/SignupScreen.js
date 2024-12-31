@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Keyboard,
 } from 'react-native';
-import IntroductionScreenStyles from '../styles/IntroductionScreenStyles';
 import Input from '../components/Input';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -43,7 +42,7 @@ const SignupScreen = ({navigation}) => {
               <TouchableOpacity
                 onPress={() => navigation.navigate('UpdateProfile')}
                 style={[styles.button, styles.borderButton]}>
-                <Text style={IntroductionScreenStyles.buttonText}>Next</Text>
+                <Text style={styles.buttonText}>Next</Text>
               </TouchableOpacity>
             </Animated.View>
         </SafeAreaView>
@@ -85,6 +84,11 @@ const styles = StyleSheet.create({
     borderColor: '#6AA5B6',
     borderWidth: 1,
     backgroundColor: 'transparent',
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
 
