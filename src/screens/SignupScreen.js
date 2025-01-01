@@ -40,7 +40,7 @@ const SignupScreen = ({navigation}) => {
 
             <Animated.View style={styles.buttonContainer}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('UpdateProfile')}
+                onPress={() => navigation.navigate('ProfileSetup')}
                 style={[styles.button, styles.borderButton]}>
                 <Text style={styles.buttonText}>Next</Text>
               </TouchableOpacity>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#222C30', // Grey background
     paddingHorizontal: 5, // Add padding on the sides
-    width: '90%',
+    width: '100%',
     marginTop: -30
   },
   buttonContainer: {

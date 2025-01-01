@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Animated, Text, StyleSheet, Image, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, {useEffect, useState} from 'react';
+import {Animated, Text, StyleSheet, Image, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import IntroductionScreen from './src/screens/IntroductionScreen';
 import SignupScreen from './src/screens/SignupScreen';
-
+import ProfileSetupScreen from './src/screens/ProfileSetupScreen';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const initializeApp = async () => {
       // Simulate app initialization tasks
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate resource loading
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate resource loading
 
       // Fade out splash screen
       Animated.timing(fadeAnim, {
@@ -31,8 +31,11 @@ const App = () => {
   if (!isReady) {
     return (
       <View style={styles.container}>
-        <Animated.View style={{ opacity: fadeAnim }}>
-          <Image source={require('./src/assets/FullLogo_Transparent.png')} style={styles.logo} />
+        <Animated.View style={{opacity: fadeAnim}}>
+          <Image
+            source={require('./src/assets/FullLogo_Transparent.png')}
+            style={styles.logo}
+          />
         </Animated.View>
       </View>
     );
@@ -40,13 +43,31 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Introduction" component={IntroductionScreen} options={{ headerShown: false }} />
-        <Stack.Screen 
-          name="Signup" 
-          component={SignupScreen} 
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          name="Introduction"
+          component={IntroductionScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={SignupScreen}
           options={{
-            headerShown: true, 
+            headerShown: true,
+            title: 'Create Account',
+            headerBackTitle: '',
+            headerStyle: {
+              backgroundColor: '#222C30',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="ProfileSetup"
+          component={ProfileSetupScreen}
+          options={{
+            headerShown: true,
             title: 'Create Account', // Header title
             headerBackTitle: '', // Explicitly hide the back title
             headerStyle: {
@@ -54,8 +75,8 @@ const App = () => {
             },
             headerTintColor: '#fff', // Back button and title color
             headerTitleAlign: 'center', // Center the title
-          }} 
-/>
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -66,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#222C30', 
+    backgroundColor: '#222C30',
   },
   logo: {
     width: 200,
