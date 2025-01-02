@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import IntroductionScreen from './src/screens/IntroductionScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import ProfileSetupScreen from './src/screens/ProfileSetupScreen';
+import ConnectWatchScreen from './src/screens/ConnectWatchScreen';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -69,6 +70,20 @@ const App = () => {
           options={{
             headerShown: true,
             title: 'Create Account', // Header title
+            headerBackTitle: '', // Explicitly hide the back title
+            headerStyle: {
+              backgroundColor: '#222C30', // Header background color
+            },
+            headerTintColor: '#fff', // Back button and title color
+            headerTitleAlign: 'center', // Center the title
+          }}
+        />
+         <Stack.Screen
+          name="ConnectWatch"
+          component={ConnectWatchScreen}
+          options={{
+            headerShown: true,
+            title: 'Connect your Watch', // Header title
             headerBackTitle: '', // Explicitly hide the back title
             headerStyle: {
               backgroundColor: '#222C30', // Header background color

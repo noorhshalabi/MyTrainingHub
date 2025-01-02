@@ -5,8 +5,9 @@ import ContainerStyles from '../styles/ContainerStyles';
 import Dropdown from '../components/Dropdown';
 import HeightInput from '../components/HeightInput';
 import WeightInput from '../components/WeightInput';
-import DateTime from '../components/DatePickerComponent';
 import DatePickerComponent from '../components/DatePickerComponent';
+import NavigateButton from '../components/NavigateButton';
+import {View} from 'react-native';
 
 const ProfileSetupScreen = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -71,6 +72,7 @@ const ProfileSetupScreen = () => {
         toggleDropdown={() => toggleDropdown('PrimaryGoal')}
         onSelect={value => handleSelect('PrimaryGoal', value)}
       />
+      <NavigateButton label="Next" screen="ConnectWatch" />
     </SafeAreaView>
   );
 };

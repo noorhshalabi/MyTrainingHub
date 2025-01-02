@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 20,
     color: 'white',
+    fontWeight: '600',
   },
   dateInput: {
     padding: 15,

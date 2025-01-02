@@ -74,6 +74,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 2,
     borderColor: '#6AA5B6',
+    shadowColor: '#6AA5B6',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
   activeButton: {
     backgroundColor: '#fff',
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
   buttonText: {
     flex: 1,
     textAlign: 'left',
+    color: '#666',
   },
   dropdown: {
     position: 'absolute',
@@ -99,7 +104,7 @@ const styles = StyleSheet.create({
   },
   dropdownText: {
     fontSize: 16,
-    color: '#333',
+    color: '#666',
   },
 });
 

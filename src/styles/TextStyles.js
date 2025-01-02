@@ -16,7 +16,8 @@ const TextStyles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 10,
     color: 'white',
-    paddingLeft: 25
+    paddingLeft: 25,
+    fontWeight: '600',
   },
 })
 
