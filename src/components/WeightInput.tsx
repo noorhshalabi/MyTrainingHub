@@ -1,50 +1,56 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import Toggle from 'react-native-toggle-element';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
+import ToggleStyle from '../styles/ToggleStyle';
+const WeightInput = () => {
+  const [unit, setUnit] = useState<'kg' | 'lb'>('kg'); // Default to kg
+  const [weight, setWeight] = useState<string>(''); // Input weight value
+  const [toggleValue, setToggleValue] = useState(false); // Toggle state for units
 
-const HeightInput = () => {
-  const [unit, setUnit] = useState<'cm' | 'in'>('cm'); // Default to cm
-  const [height, setHeight] = useState<string>(''); // Input height value
+  const toggleUnit = (newToggleValue: boolean) => {
+    setToggleValue(newToggleValue);
 
-  const toggleUnit = () => {
-    if (unit === 'cm') {
-      // Convert cm to inches
-      const convertedHeight = height
-        ? (parseFloat(height) / 2.54).toFixed(2)
+    if (newToggleValue) {
+      // Convert kg to lb
+      const convertedWeight = weight
+        ? (parseFloat(weight) * 2.20462).toFixed(2)
         : '';
-      setUnit('in');
-      setHeight(convertedHeight);
+      setUnit('lb');
+      setWeight(convertedWeight);
     } else {
-      // Convert inches to cm
-      const convertedHeight = height
-        ? (parseFloat(height) * 2.54).toFixed(2)
+      // Convert lb to kg
+      const convertedWeight = weight
+        ? (parseFloat(weight) / 2.20462).toFixed(2)
         : '';
-      setUnit('cm');
-      setHeight(convertedHeight);
+      setUnit('kg');
+      setWeight(convertedWeight);
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Height</Text>
+      <Text style={styles.label}>Enter in your weight</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-          value={height}
-          onChangeText={setHeight}
-          placeholder={`Enter height (${unit})`}
+          value={weight}
+          onChangeText={setWeight}
+          placeholder={`weight (${unit})`}
+          placeholderTextColor={'white'}
         />
-        <TouchableOpacity style={styles.toggleButton} onPress={toggleUnit}>
-          <Text style={styles.toggleButtonText}>
-            {unit === 'cm' ? 'Switch to inches' : 'Switch to cm'}
-          </Text>
-        </TouchableOpacity>
+        <Toggle
+          value={toggleValue}
+          onPress={newState => toggleUnit(newState || false)} // Ensure the value is valid
+          leftTitle="kg"
+          rightTitle="lb"
+          thumbStyle={styles.thumbStyle}
+          trackBarStyle={styles.trackBarStyle}
+          trackBar={{
+            width: 85, // Exact width of the track
+            height: 35, // Exact height of the track
+          }}
+        />
       </View>
     </View>
   );
@@ -53,32 +59,36 @@ const HeightInput = () => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
+    marginLeft: 25,
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 10,
+    color: 'white',
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   input: {
-    flex: 1,
     padding: 10,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#6AA5B6',
     borderRadius: 5,
     marginRight: 10,
-  },
-  toggleButton: {
-    padding: 10,
-    backgroundColor: '#222C30',
-    borderRadius: 5,
-  },
-  toggleButtonText: {
     color: '#fff',
-    fontSize: 14,
+  },
+  thumbStyle: {
+    backgroundColor: '#6AA5B6',
+    width: 45,
+    height: 35,
+  },
+  trackBarStyle: {
+    backgroundColor: 'white',
+    opacity: 0.5,
+    width: 80,
+    height: 35,
   },
 });
 
-export default HeightInput;
+export default WeightInput;

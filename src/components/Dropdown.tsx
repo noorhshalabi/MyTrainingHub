@@ -60,8 +60,9 @@ const Dropdown: FC<Props> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
-    width: '90%',
+    marginBottom: 25,
+    width: '70%',
+    marginLeft: 25,
   },
   button: {
     flexDirection: 'row',
@@ -71,11 +72,11 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 10,
     borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#ddd',
+    borderWidth: 2,
+    borderColor: '#6AA5B6',
   },
   activeButton: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: '#fff',
     borderColor: '#555',
   },
   buttonText: {
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
   dropdownItem: {
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: '#6AA5B6',
   },
   dropdownText: {
     fontSize: 16,
