@@ -54,14 +54,14 @@ const SignupScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222C30', // Grey background
-    paddingHorizontal: 5, // Add padding on the sides
+    backgroundColor: '#222C30', 
+    paddingHorizontal: 5, 
     width: '100%',
     marginTop: -30
   },
   buttonContainer: {
-    marginBottom: 30, // Space below the button
-    alignItems: 'center', // Center the button horizontally
+    marginBottom: 30, 
+    alignItems: 'center', 
     paddingHorizontal: 80,
   },
   text: {

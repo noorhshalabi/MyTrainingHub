@@ -3,12 +3,12 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
 const DateOfBirthPicker = () => {
-  const [date, setDate] = useState<Date | null>(null); // Initialize as null to show placeholder
+  const [date, setDate] = useState<Date | null>(null);
   const [open, setOpen] = useState(false);
 
   const handleConfirm = (selectedDate: Date) => {
     setOpen(false);
-    setDate(selectedDate); // Update the date with the selected value
+    setDate(selectedDate);
   };
 
   return (
@@ -17,17 +17,16 @@ const DateOfBirthPicker = () => {
 
       <TouchableOpacity style={styles.dateInput} onPress={() => setOpen(true)}>
         <Text style={styles.dateText}>
-          {date ? date.toDateString() : 'Tap to select your date of birth'}{' '}
-          {/* Show placeholder or selected date */}
+          {date ? date.toDateString() : 'Select your date of birth'}{' '}
         </Text>
       </TouchableOpacity>
 
       <DatePicker
         modal
         open={open}
-        date={date || new Date()} // Use current date if no date is selected
+        date={date || new Date()}
         mode="date"
-        maximumDate={new Date()} // Prevent future dates
+        maximumDate={new Date()}
         onConfirm={handleConfirm}
         onCancel={() => setOpen(false)}
       />
